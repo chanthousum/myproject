@@ -1,6 +1,6 @@
 from rest_framework import authentication, exceptions
 from django.contrib.auth.models import User
-from my_app.auth import KeycloakOIDCBackend
+from my_app.configurations.auth import KeycloakOIDCBackend
 
 class KeycloakJWTAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):

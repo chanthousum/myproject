@@ -151,14 +151,14 @@ OIDC_STORE_ACCESS_TOKEN = True
 OIDC_CREATE_USER = True
 
 AUTHENTICATION_BACKENDS = [
-    "my_app.auth.KeycloakOIDCBackend",
+    "my_app.configurations.auth.KeycloakOIDCBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "my_app.authentication.KeycloakJWTAuthentication",
+        "my_app.configurations.authentication.KeycloakJWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
