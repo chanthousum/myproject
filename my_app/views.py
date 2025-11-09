@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def profile_view(request):
     return HttpResponse(f"Welcome {request.user.username}, you are logged in via Keycloak.")
 
@@ -18,7 +17,6 @@ def user(request):
     return JsonResponse({"message":"User only"})
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def admin(request):
     return JsonResponse({"message":"Admin only"})
 

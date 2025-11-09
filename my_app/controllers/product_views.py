@@ -10,9 +10,6 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from my_app.models import Category, Product
-from my_app.my_serializers.category_serializer import CategorySerializer
-
-
 # Create your views here.
 @api_view(['GET'])
 def get_product_all(request):
@@ -22,7 +19,7 @@ def get_product_all(request):
 @swagger_auto_schema(method='POST', request_body=ProductSerializer)
 @api_view(['POST'])
 def create_product(request):
-    product = Product();
+    product = Product()
     product.name = request.data['name']
     product.barcode = request.data['barcode']
     product.sell_price=request.data['sell_price']
@@ -44,6 +41,7 @@ def create_product(request):
             "barcode": product.barcode,
             "sell_price": product.sell_price,
             "unit_in_stock": product.unit_in_stock,
+            "photo":"",
             "category": product.category_id,
         }
     serializer = ProductSerializer(data=data)
@@ -63,8 +61,7 @@ def find_by_id(request, id):
 
 
 name = openapi.Parameter('name',openapi.IN_QUERY,description="Search categories by name (like)",type=openapi.TYPE_STRING)
-@swagger_auto_schema(method='get',manual_parameters=[name],responses={200: CategorySerializer(many=True)})
-
+@swagger_auto_schema(method='get',manual_parameters=[name],responses={200: ProductSerializer(many=True)})
 @api_view(['GET'])
 def find_by_name(request):
     name=request.query_params.get('name')
