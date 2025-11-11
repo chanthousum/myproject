@@ -20,9 +20,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load .env file
 DEBUG =False
-ALLOWED_HOSTS =["*","itsmarters.com","www.itsmarters.com"]
-# Tell Django it's behind a secure proxy
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS =["*","itsmarters.com","www.itsmarters.com","127.0.0.1"]
 
 # Application definition
 
