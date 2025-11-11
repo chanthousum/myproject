@@ -37,6 +37,7 @@ services:
       - media_volume:/usr/src/app/media
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
+      - certbot-webroot:/var/www/certbot
     depends_on:
       - web
     restart: always
@@ -47,8 +48,11 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    entrypoint: /bin/sh
+      - certbot-webroot:/var/www/certbot
+    entrypoint: ""
+    command: certbot certonly --webroot --webroot-path /var/www/certbot \
+      --agree-tos --no-eff-email --email ${CERTBOT_EMAIL} \
+      -d itsmarters.com -d www.itsmarters.com --rsa-key-size 4096 --non-interactive
 
 volumes:
   postgres_data:
@@ -56,3 +60,4 @@ volumes:
   media_volume:
   certbot-etc:
   certbot-var:
+  certbot-webroot:
