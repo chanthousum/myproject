@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load .env file
 DEBUG =False
-ALLOWED_HOSTS =["*","itsmarters.com","www.itsmarters.com","127.0.0.1"]
+ALLOWED_HOSTS =["*","itsmarters.com","www.itsmarters.com","0.0.0.0"]
 
 # Application definition
 
